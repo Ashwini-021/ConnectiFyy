@@ -1,4 +1,6 @@
+import { Button } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 const About = () => {
   return (
@@ -25,6 +27,7 @@ const About = () => {
         <li>Customizable profiles</li>
         <li>And much more!</li>
       </ul>
+      <Link to="/" style={{color:"green", fontweight:"bold", background:"pink" ,}}> <Button>Back to Home</Button></Link>
     </div>
   );
 };

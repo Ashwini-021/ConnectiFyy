@@ -6,6 +6,7 @@ import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useHistory } from "react-router";
+import {Link} from 'react-router-dom'
 
 const Signup = () => {
   const [show, setShow] = useState(false);
@@ -130,6 +131,7 @@ const Signup = () => {
   return (
     <div style={styles.container}>
       <VStack spacing="5px" width="350px" >
+      <h1 style={{ fontSize: "30px",fontWeight:"bold" }}> ConnectiFy</h1>
         <FormControl id="first-name" isRequired>
           <FormLabel>Name</FormLabel>
           <Input
@@ -193,6 +195,8 @@ const Signup = () => {
         >
           Sign Up
         </Button>
+        <h2>Already have an Account !
+        <Link to="/Login" style={{color:"black", fontweight:"bold", background:"none", fontSize:"20px"}}> Login</Link></h2>
       </VStack>
     </div>
   );

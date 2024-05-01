@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
-import Login from "../components/Authentication/Login";
+//import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
 
 function Homepage() {
@@ -66,11 +66,11 @@ function Homepage() {
         </Box>
         <Container maxW="md" marginRight="30px">
           <Box w="100%" p={2} borderRadius="lg">
-            <Tabs isFitted position="relative" variant="unstyled" fontWeight="40px">
+            <Tabs isFitted position="relative" variant="unstyled">
               <TabList mb="15px">
-                <Tab margin="5px" style={{ fontSize: "30px", fontWeight: "bold" }}>
+                {/* <Tab margin="5px" style={{ fontSize: "30px", fontWeight: "bold" }}>
                   <b>Register Here</b>
-                </Tab>
+                </Tab> */}
                 {/* <Tab>Login</Tab> */}
               </TabList>
               <TabPanels>

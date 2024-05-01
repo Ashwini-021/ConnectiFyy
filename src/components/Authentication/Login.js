@@ -1,12 +1,12 @@
 import React from 'react';
 import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
-import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
+import { Input, InputGroup,InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
 import { ChatState } from "../../Context/ChatProvider";
 
 const Login = () => {
@@ -71,6 +71,7 @@ const Login = () => {
   return (
     <div style={styles.container}>
       <VStack spacing="10px" width="350px" color="white">
+        <h1 style={{ fontSize: "60px",fontWeight:"bold" }}> ConnectiFy</h1>
         <FormControl id="email" isRequired>
           <FormLabel >Email Address</FormLabel>
           <Input
@@ -116,6 +117,8 @@ const Login = () => {
         >
           Get Guest User Credentials
         </Button>
+        <h2>Don't have Account !
+        <Link to="/Signup" style={{color:"blue", fontweight:"bold", background:"none", fontSize:"20px"}}> SignUp</Link></h2>
       </VStack>
     </div>
   );
