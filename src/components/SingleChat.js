@@ -6,7 +6,7 @@ import "./styles.css";
 import { IconButton, Spinner, useToast } from "@chakra-ui/react";
 import { getSender, getSenderFull } from "../config/ChatLogics";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { myAxios } from '../config/axoisinstance';
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import ProfileModal from "./miscellaneous/ProfileModal";
 import ScrollableChat from "./ScrollableChat";
@@ -19,7 +19,7 @@ import {Stomp} from '@stomp/stompjs';
 
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
-//const ENDPOINT = "http://localhost:8080"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+//const ENDPOINT = "http://localhost:8080"; // 
 var  selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -65,8 +65,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
       setLoading(true);
       setMessages([]);
-
-      const { data } = await axios.get(
+     const selectedchatid= selectedChat.id;
+     console.log(selectedchatid);
+      const { data } = await myAxios.get(
         `/chat/messages/${selectedChat.id}`,
         config
       );
@@ -79,12 +80,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   };
    
   const stompClient = Stomp.over(function(){
-    return new SockJS('http://localhost:8080/ws')});
+    return new SockJS('https://chatapplicationproject-production.up.railway.app/ws')});
     setCtompClient(stompClient);
       stompClient.connect(headers, () => {
         console.log('Connected to WebSocket server');
         // Perform STOMP operations only after successful connection
-        stompClient.subscribe(`/specific/private/${selectedChat.id}`, async (message) => {
+        stompClient.subscribe(`/specific/private/${selectedchatid}`, async (message) => {
        //   console.log('Received message:---->>>>', message.body);
           const jsonString=message.body;
           const jsonObject = JSON.parse(jsonString);
@@ -94,12 +95,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           msg.chatId = receivedMessageChatId;
         //  console.log("msgobject==",msg);
           
-
+        console.log(selectedchatid,msg.chatId,  selectedChat.id === msg.chatId);
           if (
             !selectedChat || // if chat is selected and it matches current chat
-            selectedChat.id === msg.chatId
+            selectedchatid === msg.chatId
           ) {
-            const { data } = await axios.get(
+            const { data } = await myAxios.get(
               `/chat/messages/${selectedChat.id}`,
               config
             );
@@ -141,7 +142,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
         };
         setNewMessage("");
-        const messagedata= await axios.post(
+        const messagedata= await myAxios.post(
           "/sendmessage",
           {
             content: newMessage,

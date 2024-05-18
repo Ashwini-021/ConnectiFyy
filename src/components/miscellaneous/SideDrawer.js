@@ -21,7 +21,7 @@ import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
+import { myAxios } from '../../config/axoisinstance';
 import { useToast } from "@chakra-ui/toast";
 import ChatLoading from "../ChatLoading";
 import { Spinner } from "@chakra-ui/spinner";
@@ -77,7 +77,7 @@ function SideDrawer() {
         },
       };
 
-      const { data } = await axios.get(`/search-user?search=${search}`, config);
+      const { data } = await myAxios.get(`/search-user?search=${search}`, config);
 
       console.log(data);
       setLoading(false);
@@ -106,7 +106,7 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`/chat/createchat?username=${username}`,{}, config);
+      const { data } = await myAxios.post(`/chat/createchat?username=${username}`,{}, config);
 
       if (!chats.find((c) => c.id === data.id)) setChats([data, ...chats]);
       setSelectedChat(data); 

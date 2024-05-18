@@ -4,7 +4,7 @@ import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup,InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
 import { useState } from "react";
-import axios from "axios";
+import { myAxios } from '../../config/axoisinstance';
 import { useToast } from "@chakra-ui/react";
 import { useHistory,Link } from "react-router-dom";
 import { ChatState } from "../../Context/ChatProvider";
@@ -42,7 +42,7 @@ const Login = () => {
         },
       };
 
-      const { data } = await axios.post("/login", { username, password }, config);
+      const { data } = await myAxios.post("/login", { username, password }, config);
 
       toast({
         title: "Login Successful",

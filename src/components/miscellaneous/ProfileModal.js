@@ -3,7 +3,7 @@ import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { useToast } from "@chakra-ui/toast";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { myAxios } from '../../config/axoisinstance';
 import {
   Modal,
   ModalOverlay,
@@ -70,7 +70,7 @@ const ProfileModal = ({ user, children }) => {
             console.log(userid);
           
 
-            const { data } =  await axios.put(
+            const { data } =  await myAxios.put(
               `/update-user/picture/`,{
                 userid,
                 imageurl

@@ -1,7 +1,7 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
-import axios from "axios";
+import { myAxios } from '../config/axoisinstance';
 import { useEffect, useState } from "react";
 import { getSender } from "../config/ChatLogics";
 import ChatLoading from "./ChatLoading";
@@ -27,7 +27,7 @@ const MyChats = ({ fetchAgain }) => {
       const userId=user.id;
      
       console.log(userId);
-      const { data } = await axios.get(`/my/chats?userId=${userId}`, config);
+      const { data } = await myAxios.get(`/my/chats?userId=${userId}`, config);
       console.log(data)
       setChats(data);
     } catch (error) {

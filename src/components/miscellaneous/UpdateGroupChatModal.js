@@ -16,7 +16,7 @@ import {
   IconButton,
   Spinner,
 } from "@chakra-ui/react";
-import axios from "axios";
+import { myAxios } from '../../config/axoisinstance';
 import { useState } from "react";
 import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../userAvatar/UserBadgeItem";
@@ -47,7 +47,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/search-user?search=${search}`, config);
+      const { data } = await myAxios.get(`/search-user?search=${search}`, config);
       console.log(data);
       setLoading(false);
       setSearchResult(data);
@@ -76,7 +76,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/search-user?search=${search}`, config);
+      const { data } = await myAxios.get(`/search-user?search=${search}`, config);
     
       setLoading(false);
       setSearchResultAdmin(data);
@@ -103,7 +103,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.put(
+      const { data } = await myAxios.put(
         `chat/renamegroup`,
         {
           chatId: selectedChat.id,
@@ -163,7 +163,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.put(
+      const { data } = await myAxios.put(
         `/chat/addtogroup`,
         {
           chatId: selectedChat.id,
@@ -237,7 +237,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.put(
+      const { data } = await myAxios.put(
         `/chat/makeadmin`,
         {
           chatId: selectedChat.id,
@@ -287,7 +287,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.put(
+      const { data } = await myAxios.put(
         `/chat/removefromgroup`,
         {
           chatId: selectedChat.id,
@@ -337,7 +337,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.put(
+      const { data } = await myAxios.put(
         `/chat/removefromgroup`,
         {
           chatId: selectedChat.id,
